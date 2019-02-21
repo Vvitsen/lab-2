@@ -1,5 +1,6 @@
 package ru.avalon.java.ocpjp.labs;
 
+import java.io.File;
 import ru.avalon.java.ocpjp.labs.console.ConsoleUI;
 
 import java.io.IOException;
@@ -18,6 +19,11 @@ import ru.avalon.java.ocpjp.labs.actions.FileMoveAction;
  * @author Daniel Alpatov <danial.alpatov@gmail.com>
  */
 public class Main extends ConsoleUI<Commands> {
+    /*
+    Поскольку нет никаких условий о том, как задавать файлы, то пусть они будут статическими.
+    */
+    static public final File source = new File("C:\\temp\\source.txt");
+    static public final File dest = new File("C:\\temp\\dest.txt");
     /**
      * Точка входа в приложение.
      * 
