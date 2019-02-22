@@ -14,7 +14,7 @@ public interface Action extends Runnable, AutoCloseable {
      * потоке исполнения.
      */
     default void start() {
-       
+        
         Thread thread = new Thread(this);
         thread.start();
     }

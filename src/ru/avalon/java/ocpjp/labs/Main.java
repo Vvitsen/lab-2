@@ -4,8 +4,7 @@ import java.io.File;
 import ru.avalon.java.ocpjp.labs.console.ConsoleUI;
 
 import java.io.IOException;
-import ru.avalon.java.ocpjp.labs.actions.FileCopyAction;
-import ru.avalon.java.ocpjp.labs.actions.FileMoveAction;
+import ru.avalon.java.ocpjp.labs.actions.*;
 
 /**
  * Лабораторная работа №2
@@ -22,8 +21,8 @@ public class Main extends ConsoleUI<Commands> {
     /*
     Поскольку нет никаких условий о том, как задавать файлы, то пусть они будут статическими.
     */
-    static public final File source = new File("C:\\temp\\source.txt");
-    static public final File dest = new File("C:\\temp\\dest.txt");
+    static public final File SOURCE = new File("C:\\temp\\source.txt");
+    static public final File DEST = new File("C:\\temp\\dest.txt");
     /**
      * Точка входа в приложение.
      * 
@@ -52,13 +51,21 @@ public class Main extends ConsoleUI<Commands> {
                 /*
                  * TODO №6 Обработайте команду copy
                  */
-                new FileCopyAction().start();
+                try(FileCopyAction action = new FileCopyAction()){  // чтоб попасть в метод close()
+                    action.start();
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
                 break;
             case move:
                 /*
                  * TODO №7 Обработайте команду move
                  */
-                new FileMoveAction().start();
+                try(FileMoveAction action = new FileMoveAction()){  // чтоб попасть в метод close()
+                    action.start();
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
                 break;
             case exit:
                 close();
@@ -66,6 +73,12 @@ public class Main extends ConsoleUI<Commands> {
                 /*
                  * TODO №9 Обработайте необработанные команды
                  */
+            case create:
+                new FileCreateAction().start();
+                break;
+            case delete:
+                new FileDeleteAction().start();
+                break;
         }
     }
     
